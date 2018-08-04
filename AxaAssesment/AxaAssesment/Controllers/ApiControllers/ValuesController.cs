@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AxaAssesment.Controllers.WebController
+namespace AxaAssesment.Controllers.ApiControllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller

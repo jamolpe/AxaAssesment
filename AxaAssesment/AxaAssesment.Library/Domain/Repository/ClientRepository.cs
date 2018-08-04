@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Text;
 using AxaAssesment.Library.Domain.Models;
 
 namespace AxaAssesment.Library.Domain.Repository
 {
-    public class ClientRepository
+    public class ClientRepository : ApiCommonData
     {
-        private string _serviceDataUrl;
-        public ClientRepository(Settings settings)
-        {
-            this._serviceDataUrl = settings.ClientsUrl;
-        }
-
-        
+        public ClientRepository(Settings settings) : base(settings.ClientsUrl){}
     }
 }

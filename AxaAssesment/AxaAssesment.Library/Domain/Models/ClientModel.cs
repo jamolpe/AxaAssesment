@@ -5,7 +5,7 @@ using AxaAssesment.Library.Domain.Constants;
 
 namespace AxaAssesment.Library.Domain.Models
 {
-    public class ClientsModel
+    public class ClientModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

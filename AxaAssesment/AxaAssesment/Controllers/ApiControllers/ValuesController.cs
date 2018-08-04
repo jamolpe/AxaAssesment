@@ -1,11 +1,19 @@
 ﻿using System.Collections.Generic;
+using AxaAssesment.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace AxaAssesment.Controllers.ApiControllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private ApiConfiguration _apiConfiguration;
+        public ValuesController(IOptions<ApiConfiguration> apiConfiguration)
+        {
+            _apiConfiguration = apiConfiguration.Value;
+        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

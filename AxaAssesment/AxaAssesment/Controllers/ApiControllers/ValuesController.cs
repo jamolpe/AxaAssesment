@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using AxaAssesment.Helpers;
+using AxaAssesment.Library.Domain.Business;
+using AxaAssesment.Library.Domain.Models;
 using AxaAssesment.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -7,12 +10,14 @@ using Microsoft.Extensions.Options;
 namespace AxaAssesment.Controllers.ApiControllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class UsersController : Controller
     {
         private ApiConfiguration _apiConfiguration;
-        public ValuesController(IOptions<ApiConfiguration> apiConfiguration)
+        private ClientBusiness _clientBusiness;
+        public UsersController(IOptions<ApiConfiguration> apiConfiguration)
         {
-            _apiConfiguration = apiConfiguration.Value;
+            this._apiConfiguration = apiConfiguration.Value;
+            this._clientBusiness = new ClientBusiness(ApiHelper.ParseConfigurationToLibrarySettings(this._apiConfiguration));
         }
         // GET api/values
         [HttpGet]
@@ -23,11 +28,12 @@ namespace AxaAssesment.Controllers.ApiControllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ClientModel Get(string id)
         {
-            return "value";
+            return this._clientBusiness.GetClientDataById(id);
         }
 
+        /*
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
@@ -45,5 +51,6 @@ namespace AxaAssesment.Controllers.ApiControllers
         public void Delete(int id)
         {
         }
+        */
     }
 }

@@ -6,9 +6,8 @@ namespace AxaAssesment.Library.Domain.Business.Interfaces
 {
     public interface IClientBusiness
     {
-        ClientModel GetClientData(string id);
-        Boolean CheckClientAccess(string id);
-        TypeRole GetClientTypeRole(string id);
-        ClientModel GetClientByUserName(string name);
+        ClientModel GetClientDataById(string id);
+        ClientModel GetClientDataByUserName(string name);
+        Boolean CheckClientExist(string id);
     }
 }

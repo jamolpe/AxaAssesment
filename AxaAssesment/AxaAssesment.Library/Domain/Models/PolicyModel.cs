@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AxaAssesment.Library.Domain.Models
 {
-    public class PolicieModel
+    public class PolicyModel
     {
         public string Id { get; set; }
         public float AmountInsured { get; set; }

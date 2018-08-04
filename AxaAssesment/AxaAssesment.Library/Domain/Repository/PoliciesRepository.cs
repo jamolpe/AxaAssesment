@@ -5,8 +5,8 @@ using AxaAssesment.Library.Domain.Models;
 
 namespace AxaAssesment.Library.Domain.Repository
 {
-    public class PoliciesRepository : ApiCommonData
+    public class PolicyRepository : ApiCommonData
     {
-        public PoliciesRepository(Settings settings) : base(settings.PoliciesUrl){}
+        public PolicyRepository(Settings settings) : base(settings.PoliciesUrl){}
     }
 }

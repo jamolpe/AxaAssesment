@@ -5,7 +5,7 @@ using AxaAssesment.Library.Domain.Models;
 
 namespace AxaAssesment.Library.Domain.Repository
 {
-    class PoliciesRepository
+    public class PoliciesRepository
     {
         private string _serviceDataUrl;
         public PoliciesRepository(Settings settings)

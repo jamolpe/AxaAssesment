@@ -5,7 +5,7 @@ using AxaAssesment.Library.Domain.Models;
 
 namespace AxaAssesment.Library.Domain.Repository
 {
-    class ClientRepository
+    public class ClientRepository
     {
         private string _serviceDataUrl;
         public ClientRepository(Settings settings)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AxaAssesment.Controllers.ApiControllers
+namespace AxaAssesment.Controllers.WebControllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller

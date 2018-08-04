@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AxaAssesment.Controllers.ApiControllers
+namespace AxaAssesment.Controllers.WebControllers
 {
     public class HomeController : Controller
     {

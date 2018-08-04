@@ -12,5 +12,7 @@ namespace AxaAssesment.Library.Domain.Repository
         {
             this._serviceDataUrl = settings.ClientsUrl;
         }
+
+        
     }
 }

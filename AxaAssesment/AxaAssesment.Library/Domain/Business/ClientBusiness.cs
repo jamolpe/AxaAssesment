@@ -18,14 +18,24 @@ namespace AxaAssesment.Library.Domain.Business
         //can return a null
         public ClientModel GetClientDataByUserName(string name)
         { 
-            List<ClientModel> clientModels = this.GetClients();
-            return clientModels == null ? null : clientModels.FirstOrDefault(client => client.Name == name);
+            try{
+                List<ClientModel> clientModels = this.GetClients();
+                return clientModels == null ? null : clientModels.FirstOrDefault(client => client.Name == name);
+            }catch(Exception ex){
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
         }
         //can return a null
         public ClientModel GetClientDataById(string id)
         {
-            List<ClientModel> clientModels = this.GetClients();
-            return clientModels == null ? null : clientModels.FirstOrDefault(client => client.Id == id);
+            try{
+                List<ClientModel> clientModels = this.GetClients();
+                return clientModels == null ? null : clientModels.FirstOrDefault(client => client.Id == id);
+            }catch(Exception ex){
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
         }
 
         public bool CheckClientExist(string id)

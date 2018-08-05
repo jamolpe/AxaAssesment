@@ -15,10 +15,14 @@ namespace AxaAssesment.Library.Domain.Repository
 
         public async System.Threading.Tasks.Task<T> GetModelAsync<T>(){
             T result = default(T);
-            HttpResponseMessage response = await client.GetAsync(this._serviceDataUrl);
-            if (response.IsSuccessStatusCode)
-            {
-                result = await response.Content.ReadAsAsync<T>();
+            try{
+                HttpResponseMessage response = await client.GetAsync(this._serviceDataUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsAsync<T>();
+                }
+            }catch(Exception ex){
+                Console.WriteLine("Get Clients/Policies Error : " + ex.Message);
             }
             return result;
         }

@@ -22,7 +22,7 @@ namespace AxaAssesment.Controllers.ApiControllers
         }
 
 
-        // GET api/users/5
+        // GET api/users/GetClientById/id
         [HttpGet("[action]/{id}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
@@ -37,6 +37,7 @@ namespace AxaAssesment.Controllers.ApiControllers
                 return NotFound();
             }
         }
+        // GET api/users/GetClientByUsername/username
         [Route("[action]/{username}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]

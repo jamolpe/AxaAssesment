@@ -35,7 +35,7 @@ namespace AxaAssesment.Library.Domain.Business
         }
 
         private List<ClientModel> GetClients(){
-            return this._clientRepository.GetModelAsync<ClientModel>().Result;
+            return this._clientRepository.GetModelAsync<ClientListModel>().Result.Clients;
         }
     }
 }

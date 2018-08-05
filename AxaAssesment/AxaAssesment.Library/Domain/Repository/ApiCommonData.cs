@@ -13,12 +13,12 @@ namespace AxaAssesment.Library.Domain.Repository
             this._serviceDataUrl = urlData;
         }
 
-        public async System.Threading.Tasks.Task<List<T>> GetModelAsync<T>(){
-            List<T> result = new List<T>();
+        public async System.Threading.Tasks.Task<T> GetModelAsync<T>(){
+            T result = default(T);
             HttpResponseMessage response = await client.GetAsync(this._serviceDataUrl);
             if (response.IsSuccessStatusCode)
             {
-                result = await response.Content.ReadAsAsync<List<T>>();
+                result = await response.Content.ReadAsAsync<T>();
             }
             return result;
         }

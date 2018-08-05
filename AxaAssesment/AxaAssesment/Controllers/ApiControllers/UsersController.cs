@@ -28,9 +28,9 @@ namespace AxaAssesment.Controllers.ApiControllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ClientModel Get(string id)
+        public ClientResultModel GetClientById(string id)
         {
-            return this._clientBusiness.GetClientDataById(id);
+            return ApiHelper.ParseClientModelToResultModel(this._clientBusiness.GetClientDataById(id));
         }
 
         /*

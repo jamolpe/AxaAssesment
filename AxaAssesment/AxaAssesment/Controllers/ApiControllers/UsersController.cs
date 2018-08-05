@@ -14,6 +14,7 @@ namespace AxaAssesment.Controllers.ApiControllers
     {
         private ApiConfiguration _apiConfiguration;
         private ClientBusiness _clientBusiness;
+
         public UsersController(IOptions<ApiConfiguration> apiConfiguration)
         {
             this._apiConfiguration = apiConfiguration.Value;
@@ -23,41 +24,32 @@ namespace AxaAssesment.Controllers.ApiControllers
 
         // GET api/users/5
         [HttpGet("[action]/{id}")]
-        public ClientResultModel GetClientById(string id)
+        [ProducesResponseType(200, Type = typeof(ClientResultModel))]
+        [ProducesResponseType(404)]
+        public IActionResult GetClientById(string id)
         {
-            return ApiHelper.ParseClientModelToResultModel(this._clientBusiness.GetClientDataById(id));
+            ClientModel result = this._clientBusiness.GetClientDataById(id);
+            if (result != null)
+            {
+                return Ok(ApiHelper.ParseClientModelToResultModel(result));
+            }
+            else {
+                return NotFound();
+            }
         }
         [Route("[action]/{username}")]
-        public ClientResultModel GetClientByUsername(string username)
+        [ProducesResponseType(200, Type = typeof(ClientResultModel))]
+        [ProducesResponseType(404)]
+        public IActionResult GetClientByUsername(string username)
         {
-            return ApiHelper.ParseClientModelToResultModel(this._clientBusiness.GetClientDataByUserName(username));
+            ClientModel result = this._clientBusiness.GetClientDataByUserName(username);
+            if(result != null){
+                return Ok(ApiHelper.ParseClientModelToResultModel(result));
+            }else{
+                return  NotFound();
+            }
+
         }
 
-        /*
-         * // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-        */
     }
 }

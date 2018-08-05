@@ -19,21 +19,28 @@ namespace AxaAssesment.Controllers.ApiControllers
             this._apiConfiguration = apiConfiguration.Value;
             this._clientBusiness = new ClientBusiness(ApiHelper.ParseConfigurationToLibrarySettings(this._apiConfiguration));
         }
-        // GET api/values
+
+
+        // GET api/users/5
+        [HttpGet("[action]/{id}")]
+        public ClientResultModel GetClientById(string id)
+        {
+            return ApiHelper.ParseClientModelToResultModel(this._clientBusiness.GetClientDataById(id));
+        }
+        [Route("[action]/{username}")]
+        public ClientResultModel GetClientByUsername(string username)
+        {
+            return ApiHelper.ParseClientModelToResultModel(this._clientBusiness.GetClientDataByUserName(username));
+        }
+
+        /*
+         * // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ClientResultModel GetClientById(string id)
-        {
-            return ApiHelper.ParseClientModelToResultModel(this._clientBusiness.GetClientDataById(id));
-        }
-
-        /*
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)

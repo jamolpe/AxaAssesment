@@ -49,22 +49,30 @@ namespace AxaAssesment.Controllers.ApiControllers
             }
         }
 
-        // GET api/policy/GetPoliciesByClientId/clientId
-        [HttpGet("[action]/{clientId}")]
+        // GET api/policy/GetPoliciesByClientName/username
+        [HttpGet("[action]/{username}")]
         [ProducesResponseType(200, Type = typeof(List<PolicyModel>))]
         [ProducesResponseType(404)]
-        public IActionResult GetPoliciesByClientId(string clientId)
+        public IActionResult GetPoliciesByClientName(string username)
         {
-            List<PolicyModel> result = this._policyBusiness.PoliciesByClientId(clientId);
-            
-            if (result != null)
+            ClientModel user = this._clientBusiness.GetClientDataByUserName(username);
+            if (user != null)
             {
-                return Ok(result);
+                List<PolicyModel> result = this._policyBusiness.PoliciesByClientId(user.Id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
             else
             {
                 return NotFound();
             }
+            
         }
     }
 }

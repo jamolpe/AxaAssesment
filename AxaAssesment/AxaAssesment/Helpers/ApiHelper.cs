@@ -21,5 +21,6 @@ namespace AxaAssesment.Helpers
                 Role = client.Role.ToString()
             };
         }
+
     }
 }

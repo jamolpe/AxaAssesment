@@ -6,7 +6,8 @@ namespace AxaAssesment.Library.Domain.Business.Interfaces
 {
     public interface IPolicyBusiness
     {
-        List<PolicyModel> PoliciesByClient(string clientid);
+        List<PolicyModel> PoliciesByClientId(string clientid);
         string GetClientIdByPolicyNumber(string policyNumber);
+        void ConfigureData();
     }
 }

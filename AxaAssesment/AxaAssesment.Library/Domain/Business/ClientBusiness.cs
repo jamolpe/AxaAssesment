@@ -10,7 +10,9 @@ namespace AxaAssesment.Library.Domain.Business
 {
     public class ClientBusiness : IClientBusiness
     {
-        private ClientRepository _clientRepository;
+        private readonly ClientRepository _clientRepository;
+        private List<ClientModel> _clientModels;
+
         public ClientBusiness(Settings settings)
         {
             this._clientRepository = new ClientRepository(settings);
@@ -19,8 +21,7 @@ namespace AxaAssesment.Library.Domain.Business
         public ClientModel GetClientDataByUserName(string name)
         { 
             try{
-                List<ClientModel> clientModels = this.GetClients();
-                return clientModels == null ? null : clientModels.FirstOrDefault(client => client.Name == name);
+                return this._clientModels == null ? null : this._clientModels.FirstOrDefault(client => client.Name == name);
             }catch(Exception ex){
                 Console.WriteLine("Error: " + ex.Message);
                 return null;
@@ -30,18 +31,26 @@ namespace AxaAssesment.Library.Domain.Business
         public ClientModel GetClientDataById(string id)
         {
             try{
-                List<ClientModel> clientModels = this.GetClients();
-                return clientModels == null ? null : clientModels.FirstOrDefault(client => client.Id == id);
+                return this._clientModels == null ? null : this._clientModels.FirstOrDefault(client => client.Id == id);
             }catch(Exception ex){
                 Console.WriteLine("Error: " + ex.Message);
                 return null;
             }
         }
 
+        public void ConfigureData()
+        {
+            this._clientModels = this.GetClients();
+        }
+
+        public TypeRole GetTypeRoleByUserId(string id)
+        {
+            return this._clientModels.FirstOrDefault(client => client.Id == id).Role;
+        }
+
         public bool CheckClientExist(string id)
         {
-            List<ClientModel> clientModels = this.GetClients();
-            return clientModels == null ? false :  clientModels.Exists(client => client.Id == id);
+            return this._clientModels == null ? false : this._clientModels.Exists(client => client.Id == id);
         }
 
         private List<ClientModel> GetClients(){

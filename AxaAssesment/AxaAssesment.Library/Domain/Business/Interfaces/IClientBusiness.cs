@@ -9,5 +9,7 @@ namespace AxaAssesment.Library.Domain.Business.Interfaces
         ClientModel GetClientDataById(string id);
         ClientModel GetClientDataByUserName(string name);
         Boolean CheckClientExist(string id);
+        TypeRole GetTypeRoleByUserId(string id);
+        void ConfigureData();
     }
 }

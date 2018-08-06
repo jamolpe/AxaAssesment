@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using AxaAssesment.Helpers;
 using AxaAssesment.Library.Domain.Business;
+using AxaAssesment.Library.Domain.Business.Interfaces;
 using AxaAssesment.Library.Domain.Models;
 using AxaAssesment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -10,19 +12,20 @@ using Microsoft.Extensions.Options;
 namespace AxaAssesment.Controllers.ApiControllers
 {
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class ClientController : Controller
     {
-        private ApiConfiguration _apiConfiguration;
-        private ClientBusiness _clientBusiness;
+        private readonly ApiConfiguration _apiConfiguration;
+        private readonly IClientBusiness _clientBusiness;
 
-        public UsersController(IOptions<ApiConfiguration> apiConfiguration)
+        public ClientController(IOptions<ApiConfiguration> apiConfiguration)
         {
             this._apiConfiguration = apiConfiguration.Value;
             this._clientBusiness = new ClientBusiness(ApiHelper.ParseConfigurationToLibrarySettings(this._apiConfiguration));
+            this._clientBusiness.ConfigureData();
         }
 
 
-        // GET api/users/GetClientById/id
+        // GET api/client/GetClientById/id
         [HttpGet("[action]/{id}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
@@ -37,7 +40,7 @@ namespace AxaAssesment.Controllers.ApiControllers
                 return NotFound();
             }
         }
-        // GET api/users/GetClientByUsername/username
+        // GET api/client/GetClientByUsername/username
         [Route("[action]/{username}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]

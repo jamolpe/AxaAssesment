@@ -7,3 +7,12 @@
 /Users/javiermolpeceres/Documents/Repos/AxaAssesment/AxaAssesment/AxaAssesment.Library/bin/Debug/netcoreapp2.0/AxaAssesment.Library.pdb
 /Users/javiermolpeceres/Documents/Repos/AxaAssesment/AxaAssesment/AxaAssesment.Library/obj/Debug/netcoreapp2.0/AxaAssesment.Library.dll
 /Users/javiermolpeceres/Documents/Repos/AxaAssesment/AxaAssesment/AxaAssesment.Library/obj/Debug/netcoreapp2.0/AxaAssesment.Library.pdb
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\bin\Debug\netcoreapp2.0\AxaAssesment.Library.deps.json
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\bin\Debug\netcoreapp2.0\AxaAssesment.Library.dll
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\bin\Debug\netcoreapp2.0\AxaAssesment.Library.pdb
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\obj\Debug\netcoreapp2.0\AxaAssesment.Library.csproj.CoreCompileInputs.cache
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\obj\Debug\netcoreapp2.0\AxaAssesment.Library.AssemblyInfoInputs.cache
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\obj\Debug\netcoreapp2.0\AxaAssesment.Library.AssemblyInfo.cs
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\obj\Debug\netcoreapp2.0\AxaAssesment.Library.dll
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\obj\Debug\netcoreapp2.0\AxaAssesment.Library.pdb
+C:\Users\wsurpador\Documents\Repos\AxaAssesment\AxaAssesment\AxaAssesment.Library\obj\Debug\netcoreapp2.0\AxaAssesment.Library.csprojAssemblyReference.cache

@@ -3864,28 +3864,30 @@
     ]
   },
   "packageFolders": {
-    "/Users/javiermolpeceres/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\wsurpador\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/javiermolpeceres/Documents/Repos/AxaAssesment/AxaAssesment/AxaAssesment.Library/AxaAssesment.Library.csproj",
+      "projectUniqueName": "C:\\Users\\wsurpador\\Documents\\Repos\\AxaAssesment\\AxaAssesment\\AxaAssesment.Library\\AxaAssesment.Library.csproj",
       "projectName": "AxaAssesment.Library",
-      "projectPath": "/Users/javiermolpeceres/Documents/Repos/AxaAssesment/AxaAssesment/AxaAssesment.Library/AxaAssesment.Library.csproj",
-      "packagesPath": "/Users/javiermolpeceres/.nuget/packages/",
-      "outputPath": "/Users/javiermolpeceres/Documents/Repos/AxaAssesment/AxaAssesment/AxaAssesment.Library/obj",
+      "projectPath": "C:\\Users\\wsurpador\\Documents\\Repos\\AxaAssesment\\AxaAssesment\\AxaAssesment.Library\\AxaAssesment.Library.csproj",
+      "packagesPath": "C:\\Users\\wsurpador\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wsurpador\\Documents\\Repos\\AxaAssesment\\AxaAssesment\\AxaAssesment.Library\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/javiermolpeceres/.config/NuGet/NuGet.Config"
+        "C:\\Users\\wsurpador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3902,15 +3904,15 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": {
+            "target": "Package",
+            "version": "[5.2.6, )"
+          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
-          },
-          "Microsoft.AspNet.WebApi.Client": {
-            "target": "Package",
-            "version": "5.2.6"
           }
         },
         "imports": [

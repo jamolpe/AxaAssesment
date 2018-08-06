@@ -24,8 +24,9 @@ namespace AxaAssesment.Controllers.ApiControllers
         public PolicyController(IOptions<ApiConfiguration> apiConfiguration)
         {
             this._apiConfiguration = apiConfiguration.Value;
-            this._policyBusiness = new PolicyBusiness(ApiHelper.ParseConfigurationToLibrarySettings(this._apiConfiguration));
-            this._clientBusiness = new ClientBusiness(ApiHelper.ParseConfigurationToLibrarySettings(this._apiConfiguration));
+            Settings settings = ApiHelper.ParseConfigurationToLibrarySettings(this._apiConfiguration);
+            this._policyBusiness = new PolicyBusiness(settings);
+            this._clientBusiness = new ClientBusiness(settings);
             this._clientBusiness.ConfigureData();
             this._policyBusiness.ConfigureData();
         }

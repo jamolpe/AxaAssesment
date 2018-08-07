@@ -41,6 +41,11 @@ namespace AxaAssesment.Controllers.ApiControllers
             if (ModelState.IsValid)
             {
                 string role = TypeRole.User.ToString();
+                if (loginViewModel.IsThirdParties && !this._apiConfiguration.ThirdPartiesTokensActive)
+                {
+                    return BadRequest("Third parties tokens not allowed");
+                }
+
                 if (!loginViewModel.IsThirdParties)
                 {
                     this._clientBusiness.ConfigureData();
@@ -60,7 +65,7 @@ namespace AxaAssesment.Controllers.ApiControllers
                     issuer: this._apiConfiguration.Issuer,
                     audience: this._apiConfiguration.Audience,
                     claims: claims,
-                    expires: DateTime.UtcNow.AddDays(60),
+                    expires: DateTime.UtcNow.AddDays(this._apiConfiguration.TokenExpirationDays),
                     notBefore: DateTime.UtcNow,
                     signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._apiConfiguration.SecretKey)),
                         SecurityAlgorithms.HmacSha256)

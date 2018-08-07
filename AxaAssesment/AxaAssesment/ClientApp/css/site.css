@@ -1,66 +1,69 @@
-.main-nav li .glyphicon {
-    margin-right: 10px;
+.top-bar {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    min-height: 50px;
+    background-color: #333;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.top-bar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-/* Highlighting rules for nav menu items */
-.main-nav li a.active,
-.main-nav li a.active:hover,
-.main-nav li a.active:focus {
-    background-color: #4189C7;
+.top-bar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.top-bar a.active {
+    background-color: #4CAF50;
     color: white;
 }
-
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+.top-bar .icon {
+    display: none;
 }
-
-@media (max-width: 767px) {
-    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-    body {
-        padding-top: 50px;
+@media screen and (max-width: 600px) {
+    .top-bar a:not(:first-child) {display: none;}
+    .top-bar a.icon {
+        float: right;
+        display: block;
+        color: white;
     }
 }
-
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    .main-nav {
-        height: 100%;
-        width: calc(25% - 20px);
+  
+@media screen and (max-width: 600px) {
+    .top-bar.responsive {position: relative;}
+    .top-bar.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
-    .main-nav .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 100%;
-    }
-    .main-nav .navbar-header {
+    .top-bar.responsive a {
         float: none;
-    }
-    .main-nav .navbar-collapse {
-        border-top: 1px solid #444;
-        padding: 0px;
-    }
-    .main-nav .navbar ul {
-        float: none;
-    }
-    .main-nav .navbar li {
-        float: none;
-        font-size: 15px;
-        margin: 6px;
-    }
-    .main-nav .navbar li a {
-        padding: 10px 16px;
-        border-radius: 4px;
-    }
-    .main-nav .navbar a {
-        /* If a menu item's text is too long, truncate it */
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        display: block;
+        text-align: left;
     }
 }
+
+.main-body {
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.footer-info {
+    margin-top: 50px;
+    font-size: small;
+    -ms-opacity: .5;
+    opacity: .5;
+}
+.token-button {
+    display: block;
+}
+

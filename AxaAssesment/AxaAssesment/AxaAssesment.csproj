@@ -28,6 +28,18 @@
   <ItemGroup>
     <Compile Remove="Models\ClientReturnModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\components\DownAbout\DownAbout.tsx" />
+    <None Remove="ClientApp\components\MainBody.tsx" />
+    <None Remove="ClientApp\components\TokenCaller\TokenCaller.tsx" />
+    <None Remove="ClientApp\components\TopBar\TopBar.tsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\DownAbout\DownAbout.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\MainBody.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\TokenCaller\TokenCaller.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\TopBar\TopBar.tsx" />
+  </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

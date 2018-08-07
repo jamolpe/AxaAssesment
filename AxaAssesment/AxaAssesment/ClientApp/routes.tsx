@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
-import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import { MainBody } from './components/MainBody';
+import { TokenCaller } from './components/TokenCaller/TokenCaller';
 
-export const routes = <Layout>
+export const routes = <MainBody>
     <Route exact path='/' component={ Home } />
-    <Route path='/counter' component={ Counter } />
-    <Route path='/fetchdata' component={ FetchData } />
-</Layout>;
+    <Route path='/tokenMaker' component={ TokenCaller } />
+</MainBody>;

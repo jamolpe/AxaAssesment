@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web.Http;
 using AxaAssesment.Helpers;
 using AxaAssesment.Library.Domain.Business;
 using AxaAssesment.Library.Domain.Business.Interfaces;
 using AxaAssesment.Library.Domain.Models;
 using AxaAssesment.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AxaAssesment.Controllers.ApiControllers
 {
-    
-    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
+    [Authorize]
+    [Route("api/[controller]")]
     public class PolicyController : Controller
     {
 
@@ -34,50 +33,40 @@ namespace AxaAssesment.Controllers.ApiControllers
         }
 
         // GET api/policy/GetClientIdByPolicyNumber/policyNumber
-        [Microsoft.AspNetCore.Mvc.HttpGet("{requestUser}/[action]/{policyNumber}")]
+        [Microsoft.AspNetCore.Mvc.HttpGet("[action]/{policyNumber}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
-        public IActionResult GetClientIdByPolicyNumber(string requestUser,string policyNumber)
+        [Authorize(Roles = "Admin")]
+        public IActionResult GetClientIdByPolicyNumber(string policyNumber)
         {
-            if (AuthorizationHelper.IsADminRole(requestUser,this._clientBusiness))
+           
+            string userId = this._policyBusiness.GetClientIdByPolicyNumber(policyNumber);
+            ClientModel result = this._clientBusiness.GetClientDataById(userId);
+            if (result != null)
             {
-                string userId = this._policyBusiness.GetClientIdByPolicyNumber(policyNumber);
-                ClientModel result = this._clientBusiness.GetClientDataById(userId);
-                if (result != null)
-                {
-                    return Ok(ApiHelper.ParseClientModelToResultModel(result));
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(ApiHelper.ParseClientModelToResultModel(result));
             }
             else
             {
-                return Unauthorized();
+                return NotFound();
             }
+            
         }
 
         // GET api/policy/GetPoliciesByClientName/username
-        [Microsoft.AspNetCore.Mvc.HttpGet("{requestUser}/[action]/{username}")]
+        [Microsoft.AspNetCore.Mvc.HttpGet("[action]/{username}")]
         [ProducesResponseType(200, Type = typeof(List<PolicyModel>))]
         [ProducesResponseType(404)]
-        public IActionResult GetPoliciesByClientName(string requestUser,string username)
+        [Authorize(Roles = "Admin")]
+        public IActionResult GetPoliciesByClientName(string username)
         {
-            if (AuthorizationHelper.IsADminRole(requestUser, this._clientBusiness))
+            ClientModel user = this._clientBusiness.GetClientDataByUserName(username);
+            if (user != null)
             {
-                ClientModel user = this._clientBusiness.GetClientDataByUserName(username);
-                if (user != null)
+                List<PolicyModel> result = this._policyBusiness.PoliciesByClientId(user.Id);
+                if (result != null)
                 {
-                    List<PolicyModel> result = this._policyBusiness.PoliciesByClientId(user.Id);
-                    if (result != null)
-                    {
-                        return Ok(result);
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
+                    return Ok(result);
                 }
                 else
                 {
@@ -86,8 +75,9 @@ namespace AxaAssesment.Controllers.ApiControllers
             }
             else
             {
-                return Unauthorized();
+                return NotFound();
             }
+           
             
         }
     }

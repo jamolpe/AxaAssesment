@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace AxaAssesment.Controllers.ApiControllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ClientController : Controller
     {
@@ -26,54 +27,38 @@ namespace AxaAssesment.Controllers.ApiControllers
 
 
         // GET api/client/GetClientById/id
-        [HttpGet("{requestUser}/[action]/{id}")]
+        [HttpGet("[action]/{id}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
-        public IActionResult GetClientById(string requestUser,string id)
+        [Authorize(Roles = "Admin,User")]
+        public IActionResult GetClientById(string id)
         {
-            if (AuthorizationHelper.IsADminRole(requestUser, this._clientBusiness) ||
-                AuthorizationHelper.IsUserRole(requestUser, this._clientBusiness))
+            ClientModel result = this._clientBusiness.GetClientDataById(id);
+            if (result != null)
             {
-                ClientModel result = this._clientBusiness.GetClientDataById(id);
-                if (result != null)
-                {
-                    return Ok(ApiHelper.ParseClientModelToResultModel(result));
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(ApiHelper.ParseClientModelToResultModel(result));
             }
             else
             {
-                return Unauthorized();
+                return NotFound();
             }
-            
         }
         // GET api/client/GetClientByUsername/username
-        [Route("{requestUser}/[action]/{username}")]
+        [Route("[action]/{username}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
-        public IActionResult GetClientByUsername(string requestUser,string username)
+        [Authorize(Roles = "Admin,User")]
+        public IActionResult GetClientByUsername(string username)
         {
-            if (AuthorizationHelper.IsADminRole(requestUser, this._clientBusiness) ||
-                AuthorizationHelper.IsUserRole(requestUser, this._clientBusiness))
+            ClientModel result = this._clientBusiness.GetClientDataByUserName(username);
+            if (result != null)
             {
-                ClientModel result = this._clientBusiness.GetClientDataByUserName(username);
-                if (result != null)
-                {
-                    return Ok(ApiHelper.ParseClientModelToResultModel(result));
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(ApiHelper.ParseClientModelToResultModel(result));
             }
             else
             {
-                return Unauthorized();
+                return NotFound();
             }
         }
-
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace AxaAssesment.Controllers.ApiControllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ClientController : Controller
     {
@@ -29,6 +30,7 @@ namespace AxaAssesment.Controllers.ApiControllers
         [HttpGet("[action]/{id}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
+        [Authorize(Roles = "Admin,User")]
         public IActionResult GetClientById(string id)
         {
             ClientModel result = this._clientBusiness.GetClientDataById(id);
@@ -36,7 +38,8 @@ namespace AxaAssesment.Controllers.ApiControllers
             {
                 return Ok(ApiHelper.ParseClientModelToResultModel(result));
             }
-            else {
+            else
+            {
                 return NotFound();
             }
         }
@@ -44,16 +47,18 @@ namespace AxaAssesment.Controllers.ApiControllers
         [Route("[action]/{username}")]
         [ProducesResponseType(200, Type = typeof(ClientResultModel))]
         [ProducesResponseType(404)]
+        [Authorize(Roles = "Admin,User")]
         public IActionResult GetClientByUsername(string username)
         {
             ClientModel result = this._clientBusiness.GetClientDataByUserName(username);
-            if(result != null){
+            if (result != null)
+            {
                 return Ok(ApiHelper.ParseClientModelToResultModel(result));
-            }else{
-                return  NotFound();
             }
-
+            else
+            {
+                return NotFound();
+            }
         }
-
     }
 }

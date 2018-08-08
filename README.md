@@ -69,7 +69,7 @@ Estos elementos se encuentran en el archivo appsettings.json
 
 El funcionamiento de la api es sencillo una vez arrancado el proyecto podremos ver en el navegador una pequeña presentación Front-End en react donde encontraremos una parte generadora de tokens tanto para clientes existentes en la Base de datos como para terceros.
 
-![Token generator imagen](Images/TokenGenerator.jpg "Generador de tokens")
+![Token generator imagen](Images/TokenGenerator.JPG "Generador de tokens")
 
 Existen 2 maneras de generar tokens según el tipo de usuario.
 * **Tokens para usuarios de la base de datos**: Introduciendo un nombre de usuario (obligatorio) y el id del usuario del que vamos a obtener el token. Esto es importante ya que este id es el que define con que usuario vamos a realizar las peticiones y su rol dependerá del rol que tenga asignado en la Base de datos del servicio, Es decir:
@@ -78,7 +78,7 @@ Existen 2 maneras de generar tokens según el tipo de usuario.
 
 Una vez pulsado el botón obtener token nos aparecerá un recuadro con el token dentro:
 
-![Token obtenido imagen](Images/TokenObtenido.jpg "Resultado token")
+![Token obtenido imagen](Images/TokenObtenido.JPG "Resultado token")
 
 
 Además de por esta pequeña app front-end se puede realizar la obtencion de tokens mediante peticiones a la api:
@@ -103,25 +103,25 @@ una vez obtenido el token podremos realizar llamadas a la API, la api cuenta con
 
 * **/api/client/GetClientByUsername/{username}**: obtenemos la informacion de un cliente por el nombre de cliente. **Nivel de acceso**: Users y Admin
 
-![Get client by username imagen](Images/GetClientByUsername.jpg "Get client by username")
+![Get client by username imagen](Images/GetClientByUsername.JPG "Get client by username")
 
 * **/api/client/GetClientById/{id}**: obtenemos la informacion de un cliente por el id de cliente. **Nivel de acceso**: Users y Admin
 
-![Get client by Id imagen](Images/GetClientById.jpg "Get client by Id")
+![Get client by Id imagen](Images/GetClientById.JPG "Get client by Id")
 
 * **/api/client/GetClientIdByPolicyNumber/{policyNumber}**: obtenemos la informacion de un cliente por el PolicyNumber. **Nivel de acceso**: Admin
 
-![Get client by policyNumber imagen](Images/GetClientIdByPolicyNumber.jpg "Get client by policyNumber")
+![Get client by policyNumber imagen](Images/GetClientIdByPolicyNumber.JPG "Get client by policyNumber")
 
 
 * **/api/client/GetPoliciesByClientName/{username}**: obtenemos la lista de policies de un cliente por el nombre. **Nivel de acceso**: Admin
 
-![Get policies by username imagen](Images/GetPoliciesByClientName.jpg "Get policies by username")
+![Get policies by username imagen](Images/GetPoliciesByClientName.JPG "Get policies by username")
 
 
 En el caso de intentar hacer llamadas a la api sin tener el nivel de acceso o token necesario la Api nos devolverá un 401 no autorizado
 
-![No autorizado imagen](Images/NoAutorizado.jpg "No autorizado")
+![No autorizado imagen](Images/NoAutorizado.JPG "No autorizado")
 
 
 # Créditos

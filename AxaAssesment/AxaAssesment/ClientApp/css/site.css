@@ -65,5 +65,22 @@
 }
 .token-button {
     display: block;
+    margin-left: 50%;
+    margin-top: 2%;
 }
+.result-Box {
+    width: 500px;
+    border: 1px solid green;
+    word-break: break-all;
+    margin-left: 30%;
+    margin-top: 2%;
+}
+.loader {
+    margin-left: 50%;
+    margin-top: 2%;
+}
+.error {
+    border: 1px solid red;
+}
+
 

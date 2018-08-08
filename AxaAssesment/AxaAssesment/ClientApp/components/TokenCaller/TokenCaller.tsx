@@ -6,7 +6,10 @@ interface TokenStateModel {
     isWaitingResponse: boolean;
     recivedResponse: boolean;
     responseresult: string;
-    buttonText:string;
+    buttonText: string;
+    userName: string;
+    userId: string;
+    isThirdParties:boolean;
 }
 interface ResponseToken {
     token:string;
@@ -16,56 +19,97 @@ export class TokenCaller extends React.Component<RouteComponentProps<{}>, TokenS
 {
     constructor() {
         super();
-        this.state = { isWaitingResponse: false, recivedResponse: false, responseresult: '', buttonText:'Get my token!'};
+        this.state = {
+            isWaitingResponse: false,
+            recivedResponse: false,
+            responseresult: '',
+            buttonText: 'Get my token!',
+            userName: '',
+            userId: '',
+            isThirdParties: false
+    };
         this.CallTokenGenerator = this.CallTokenGenerator.bind(this);
     }
     public render() {
         return (<div>
                     <h1>Obtain your token</h1>
                     <label>Your User Name</label>
-                    <input className="form-control"/>
+                    <small id="emailHelp" className="form-text text-muted"> *Required</small>
+                         <input className={this.state.userName != '' ? "form-control" : "form-control error"} value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
                     <label>Your User Id *</label>
-                    <input className="form-control"/>
-            <small id="emailHelp" className="form-text text-muted">*Leave this blank if you are not a user from our Data Base.You will only have access to certain data</small>
-            {this.ElementByState()}
+                         <input className="form-control" value={this.state.userId} onChange={e => this.setState({ userId: e.target.value })} />
+                    <small id="emailHelp" className="form-text text-muted">*Leave this blank if you are not a user from our Data Base.You will only have access to certain data</small>
+                    {this.ElementByState()}
            </div>);
     }
 
     ElementByState() {
         if (this.state.isWaitingResponse) {
-            return <RingLoader
-                color={'#123abc'}
-                loading={this.state.isWaitingResponse}
-            />
+            return <div className="loader">
+                       <RingLoader
+                           color={'#123abc'}
+                           loading={this.state.isWaitingResponse}
+                       /></div>
         } else if (this.state.recivedResponse) {
-            return <div><div>{this.state.responseresult}</div>
-                <button onClick={this.CallTokenGenerator} className="btn btn-success token-button"> {this.state.buttonText} </button></div>
+            return <div><button disabled={this.state.userName == ''} onClick={this.CallTokenGenerator} className="btn btn-success token-button"> {this
+                .state.buttonText} </button>
+                    <div className="result-Box">{this.state.responseresult}</div>
+                </div>
         } else {
-            return <button onClick={this.CallTokenGenerator} className="btn btn-success token-button"> {this.state.buttonText} </button>
+            return <button onClick={this.CallTokenGenerator} disabled={this.state.userName == ''} className="btn btn-success token-button"> {this.state
+                .buttonText} </button>
         }
     }
 
     CallTokenGenerator() {
+        if (this.state.userId == '') {
+            this.setState({ isThirdParties: true });
+        } else {
+            this.setState({ isThirdParties: false });
+        }
         this.setState({ isWaitingResponse: true });
+        var data = {
+            Username: this.state.userName,
+            UserId: this.state.userId,
+            IsThirdParties: this.state.isThirdParties
+        }
         var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://localhost:58939/api/security/token",
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
-                "cache-control": "no-cache",
-                "postman-token": "40994a3a-31f1-d35e-41a8-5f8556f886f8"
             },
             "processData": false,
-            "data": "{\n\t\"Username\" : \"Test\",\n\t\"UserId\" : \"a3b8d425-2b60-4ad7-becc-bedf2ef860bd\",\n\t\"IsThirdParties\":true\n}"
+            "body": JSON.stringify(data)
         }
+        let resStatus = 0;
         fetch('api/security/token', settings)
-            .then(response => response.json() as Promise<ResponseToken>)
+            .then(response => {
+                resStatus = response.status;
+                return response.json() as Promise<ResponseToken>
+             })
             .then(data => {
-                this.setState({ responseresult: data.token, isWaitingResponse: false, recivedResponse: true, buttonText:'Get new token'});
-                console.log(this.state);
+                switch (resStatus) {
+                    case 200:
+                        this.setState({
+                            responseresult: data.token,
+                            isWaitingResponse: false,
+                            recivedResponse: true,
+                            buttonText: 'Get new token'
+                        });
+                        break;
+                    case 400:
+                        this.setState({
+                            responseresult: 'An error ocurred please check the User Name ',
+                            isWaitingResponse: false,
+                            recivedResponse: true,
+                            buttonText: 'Try again'
+                        });
+                        break;
+                    
+                default:
+                }
             });
+
     }
     
 }

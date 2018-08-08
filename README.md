@@ -32,7 +32,7 @@ npm install
 
 También restaurar los paketes nugget del proyecto.
 
-## Configuracion
+## Configuración
 --------
 En este proyecto se pueden configurar diferentes elementos de la API:
 * URL obtención de clientes

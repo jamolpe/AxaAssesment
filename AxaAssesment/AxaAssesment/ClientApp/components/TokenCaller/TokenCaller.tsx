@@ -32,7 +32,7 @@ export class TokenCaller extends React.Component<RouteComponentProps<{}>, TokenS
     }
     public render() {
         return (<div>
-                    <h1>Obtain your token</h1>
+                    <h1>Get your token</h1>
                     <label>Your User Name</label>
                     <small id="emailHelp" className="form-text text-muted"> *Required</small>
                          <input className={this.state.userName != '' ? "form-control" : "form-control error"} value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
